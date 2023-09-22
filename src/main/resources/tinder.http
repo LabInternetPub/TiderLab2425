@@ -1,0 +1,95 @@
+### login maria
+POST http://localhost:8080/login
+
+{
+  "username": "maria",
+  "password": "password123"
+}
+> {%
+    client.global.set("auth_token", response.headers.valueOf("Authorization"));
+    client.log("token: " + response.headers.valueOf("Authorization"));
+%}
+
+### get josep
+GET http://localhost:8080/profiles/josep@tecnocampus.cat
+#Authorization: {{auth_token}}
+
+### get all profiles
+GET http://localhost:8080/profiles
+
+
+### get candidates by email
+GET http://localhost:8080/profiles/josep@tecnocampus.cat/candidates
+
+###
+GET http://localhost:8080/likes
+
+
+### post profile
+POST http://localhost:8080/profiles
+content-type: application/json
+
+{
+	"email": "manuu@tecnocampus.cat",
+	"nickname": "Manuell",
+	"gender": "Man",
+	"attraction": "Woman",
+	"passion": "Sport"
+}
+
+### post incorrect profile
+POST http://localhost:8080/profiles
+content-type: application/json
+
+{
+  "email": "manuutecnocampus.cat",
+  "nickname": "ll",
+  "gender": "Man",
+  "attraction": "Woman",
+  "passion": "Sport"
+}
+
+### post like
+POST http://localhost:8080/likes
+content-type: application/json
+
+{
+  "origin" : "pepe@tecnocampus.cat",
+  "targets": ["maria@tecnocampus.cat", "marta@tecnocampus.cat"]
+}
+
+### post like error origin
+POST http://localhost:8080/likes
+content-type: application/json
+
+{
+  "origin" : "error@tecnocampus.cat",
+  "targets": ["maria@tecnocampus.cat", "marta@tecnocampus.cat"]
+}
+
+### post like error target
+POST http://localhost:8080/likes
+content-type: application/json
+
+{
+  "origin" : "pepe@tecnocampus.cat",
+  "targets": ["maria@tecnocampus.cat", "error@tecnocampus.cat"]
+}
+### post profile as string
+POST http://localhost:8080/teaching/profilesString
+content-type: application/string
+
+{
+  "email": "manuu@tecnocampus.cat",
+  "nickname": "Manuell",
+  "gender": "Man",
+  "attraction": "Woman",
+  "passion": "Sport"
+}
+
+### get josep candidates
+GET http://localhost:8080/profiles/josep@tecnocampus.cat/candidates
+
+
+### get josep candidates
+GET http://localhost:8080/profiles/error@tecnocampus.cat/candidates
