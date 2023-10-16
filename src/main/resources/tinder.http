@@ -24,6 +24,9 @@ GET http://localhost:8080/profiles/josep@tecnocampus.cat/candidates
 ###
 GET http://localhost:8080/likes
 
+###
+GET http://localhost:8080/likesInterface
+
 
 ### post profile
 POST http://localhost:8080/profiles

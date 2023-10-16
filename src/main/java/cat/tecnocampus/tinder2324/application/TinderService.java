@@ -1,6 +1,7 @@
 package cat.tecnocampus.tinder2324.application;
 
 import cat.tecnocampus.tinder2324.application.dto.domain.LikeSummaryDTO;
+import cat.tecnocampus.tinder2324.application.dto.domain.LikeSummaryInterface;
 import cat.tecnocampus.tinder2324.application.dto.domain.ProfileDTO;
 import cat.tecnocampus.tinder2324.application.exception.ProfileNotFound;
 import cat.tecnocampus.tinder2324.domain.Like;
@@ -9,12 +10,15 @@ import cat.tecnocampus.tinder2324.persistence.LikeRepository;
 import cat.tecnocampus.tinder2324.persistence.ProfileRepository;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Service
+
+@Controller
 public class TinderService {
 	private ProfileRepository profileRepository;
 	private LikeRepository likeRepository;
@@ -91,5 +95,9 @@ public class TinderService {
 
 	public List<LikeSummaryDTO> getLikes() {
 		return likeRepository.findLikeSummary();
+	}
+
+	public List<LikeSummaryInterface> getLikesSummaryInterface() {
+		return likeRepository.findAllProjectedBy();
 	}
 }

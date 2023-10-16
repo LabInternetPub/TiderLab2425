@@ -2,6 +2,7 @@ package cat.tecnocampus.tinder2324.api;
 
 import cat.tecnocampus.tinder2324.application.TinderService;
 import cat.tecnocampus.tinder2324.application.dto.domain.LikeSummaryDTO;
+import cat.tecnocampus.tinder2324.application.dto.domain.LikeSummaryInterface;
 import cat.tecnocampus.tinder2324.application.dto.domain.ProfileDTO;
 import cat.tecnocampus.tinder2324.domain.Profile;
 import org.springframework.http.HttpStatus;
@@ -36,6 +37,10 @@ public class ProfileRestController {
 		return tinderService.getLikes();
 	}
 
+	@GetMapping("/likesInterface")
+	public List<LikeSummaryInterface> getLikesSummaryInterface() {
+		return tinderService.getLikesSummaryInterface();
+	}
 	/*
 	//Returns profiles that match the registered username preferences
 	@GetMapping("/profiles/me/candidates")
