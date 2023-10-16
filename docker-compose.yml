@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  docker-mysql:
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=tinder
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=pwd
+    volumes:
+      - tinder-db:/var/lib/mysql
+volumes:
+  tinder-db:
+    driver: local
