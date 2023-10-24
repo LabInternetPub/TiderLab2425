@@ -11,7 +11,7 @@ POST http://localhost:8080/login
 %}
 
 ### get josep
-GET http://localhost:8080/profiles/josep@tecnocampus.cat
+GET http://localhost:8080/profiles/josepppp@tecnocampus.cat
 #Authorization: {{auth_token}}
 
 ### get all profiles
