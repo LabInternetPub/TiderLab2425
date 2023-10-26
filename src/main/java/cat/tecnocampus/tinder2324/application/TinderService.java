@@ -39,9 +39,14 @@ public class TinderService {
 		return profileRepository.findById(email).orElseThrow(() -> new ProfileNotFound(email));
 	}
 
-	public Profile getProfileWithNickname(String username) {
+	public ProfileDTO getProfileWithNickname(String username) {
+		var profile = profileRepository.findByNickname(username).orElseThrow(() -> new ProfileNotFound(username));
+		return modelMapper.map(profile, ProfileDTO.class);
+	}
+	private Profile getProfileWithNicknameDomain(String username) {
 		return profileRepository.findByNickname(username).orElseThrow(() -> new ProfileNotFound(username));
 	}
+
 
 	public List<ProfileDTO> getProfiles() {
 		return profileRepository.findAll().stream().map((profile) -> modelMapper.map(profile, ProfileDTO.class)).toList();
@@ -60,7 +65,7 @@ public class TinderService {
 	}
 
 	public List<ProfileDTO> getCandidatesByNickname(String username) {
-		Profile user = this.getProfileWithNickname(username);
+		Profile user = this.getProfileWithNicknameDomain(username);
 		return this.getProfilesInternal().stream()
 				.filter(user::isCompatible)
 				.map((profile) -> modelMapper.map(profile, ProfileDTO.class))

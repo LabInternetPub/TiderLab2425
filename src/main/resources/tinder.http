@@ -1,8 +1,9 @@
 ### login maria
-POST http://localhost:8080/login
+POST http://localhost:8080/authenticate
+content-type: application/json
 
 {
-  "username": "maria",
+  "username": "admin",
   "password": "password123"
 }
 > {%
@@ -11,12 +12,21 @@ POST http://localhost:8080/login
 %}
 
 ### get josep
-GET http://localhost:8080/profiles/josepppp@tecnocampus.cat
-#Authorization: {{auth_token}}
+GET http://localhost:8080/profiles/josep@tecnocampus.cat
+Authorization: {{auth_token}}
+
+### get me
+GET http://localhost:8080/profiles/me
+Authorization: {{auth_token}}
+
+### get my candidates
+GET http://localhost:8080/profiles/me/candidates
+Authorization: {{auth_token}}
+
 
 ### get all profiles
 GET http://localhost:8080/profiles
-
+Authorization: {{auth_token}}
 
 ### get candidates by email
 GET http://localhost:8080/profiles/josep@tecnocampus.cat/candidates

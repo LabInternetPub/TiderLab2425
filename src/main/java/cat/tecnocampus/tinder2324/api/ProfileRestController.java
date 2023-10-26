@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
 
+import java.security.Principal;
 import java.util.List;
 
 
@@ -41,13 +42,6 @@ public class ProfileRestController {
 	public List<LikeSummaryInterface> getLikesSummaryInterface() {
 		return tinderService.getLikesSummaryInterface();
 	}
-	/*
-	//Returns profiles that match the registered username preferences
-	@GetMapping("/profiles/me/candidates")
-	public List<Profile> getCandidatesByNickname(Principal principal) {
-		return tinderController.getCandidatesByNickname(principal.getName());
-	}
-	 */
 
 	//Returns profiles that match the user (email) preferences
 	@GetMapping("/profiles/{email}/candidates")
@@ -66,6 +60,19 @@ public class ProfileRestController {
 	public void addLikes(@RequestBody LikeFront likes) {
 		tinderService.newLikes(likes.getOrigin(), likes.getTargets());
 	}
+
+	@GetMapping("/profiles/me")
+	public ProfileDTO getProfileMe(Principal principal) {
+		return tinderService.getProfileWithNickname(principal.getName());
+	}
+
+	//Returns profiles that match the registered username preferences
+	@GetMapping("/profiles/me/candidates")
+	public List<ProfileDTO> getCandidatesByNickname(Principal principal) {
+		return tinderService.getCandidatesByNickname(principal.getName());
+	}
+
+
 
 
 	public static class LikeFront {
