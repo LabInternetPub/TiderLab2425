@@ -11,6 +11,13 @@ content-type: application/json
     client.log("token: " + response.headers.valueOf("Authorization"));
 %}
 
+###
+GET http://localhost:8080/teaching/unregistered
+
+###
+GET http://localhost:8080/teaching/principal
+
+
 ### get josep
 GET http://localhost:8080/profiles/josep@tecnocampus.cat
 Authorization: {{auth_token}}
@@ -53,6 +60,7 @@ content-type: application/json
 ### post incorrect profile
 POST http://localhost:8080/profiles
 content-type: application/json
+Authorization: {{auth_token}}
 
 {
   "email": "manuutecnocampus.cat",

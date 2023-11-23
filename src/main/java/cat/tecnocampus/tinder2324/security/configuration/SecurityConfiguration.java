@@ -50,10 +50,11 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(req ->
                         req.requestMatchers(WHITE_LIST_URL)
                                 .permitAll()
+                                .requestMatchers("/teaching/**").permitAll()
                                 .requestMatchers("/quotes/**").hasAnyRole("USER", "ADMIN")
-                                .requestMatchers("/profiles/me/**").hasRole("USER")
-                                .requestMatchers(POST, "/profiles").hasRole("ADMIN")
+                                //.requestMatchers("/profiles/me/**").hasRole("USER")
                                 .requestMatchers("/profiles/**", "/profilesByName/**").hasRole("ADMIN")
+                                .requestMatchers(POST, "/profiles").hasRole("ADMIN")
 
                                 //.requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
                                 .anyRequest()

@@ -7,10 +7,14 @@ import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
@@ -27,6 +31,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration
+@WithMockUser(username="admin",roles={"USER","ADMIN"})
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class Tinder2324ApplicationTests {
 
@@ -57,7 +64,7 @@ class Tinder2324ApplicationTests {
 
     @Test
     void testGetProfileUserExists() throws Exception {
-        ProfileDTO expectedProfile = new ProfileDTO("josep@tecnocampus.cat", "Josep", "Indefinite", "Bisexual", "Sport");
+        ProfileDTO expectedProfile = new ProfileDTO("josep@tecnocampus.cat", "josep", "Indefinite", "Bisexual", "Sport");
 
         MvcResult mvcResult = mockMvc.perform(get("/profiles/josep@tecnocampus.cat")
                         .accept(MediaType.APPLICATION_JSON))

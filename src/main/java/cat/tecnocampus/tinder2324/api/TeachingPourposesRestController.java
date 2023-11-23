@@ -7,10 +7,14 @@ import cat.tecnocampus.tinder2324.application.dto.domain.ProfileDTO;
 import cat.tecnocampus.tinder2324.domain.Profile;
 import cat.tecnocampus.tinder2324.persistence.ProfileRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.security.core.annotation.CurrentSecurityContext;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.constraints.Max;
+
+import java.security.Principal;
 
 @RestController
 @RequestMapping("/teaching")
@@ -33,6 +37,16 @@ public class TeachingPourposesRestController {
     @GetMapping("/int/{i}")
     public int getInt(@PathVariable @Max(50) int i) {
         return i;
+    }
+
+    @GetMapping("/unregistered")
+    public String method(@CurrentSecurityContext SecurityContext context) {
+        return context.getAuthentication().getName();
+    }
+
+    @GetMapping("/principal")
+    public String principal(Principal principal) {
+        return principal.getName();
     }
 
 
