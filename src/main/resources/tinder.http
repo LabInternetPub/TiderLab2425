@@ -16,7 +16,7 @@ GET http://localhost:8080/teaching/unregistered
 
 ###
 GET http://localhost:8080/teaching/principal
-
+Authorization: {{auth_token}}
 
 ### get josep
 GET http://localhost:8080/profiles/josep@tecnocampus.cat
@@ -48,6 +48,7 @@ GET http://localhost:8080/likesInterface
 ### post profile
 POST http://localhost:8080/profiles
 content-type: application/json
+Authorization: {{auth_token}}
 
 {
 	"email": "manuu@tecnocampus.cat",
@@ -96,6 +97,7 @@ content-type: application/json
   "origin" : "pepe@tecnocampus.cat",
   "targets": ["maria@tecnocampus.cat", "error@tecnocampus.cat"]
 }
+
 ### post profile as string
 POST http://localhost:8080/teaching/profilesString
 content-type: application/string
@@ -114,3 +116,6 @@ GET http://localhost:8080/profiles/josep@tecnocampus.cat/candidates
 
 ### get josep candidates
 GET http://localhost:8080/profiles/error@tecnocampus.cat/candidates
+
+### get int
+GET http://localhost:8080/teaching/int/43
