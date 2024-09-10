@@ -23,11 +23,6 @@ public class ProfileRestController {
 		this.tinderService = tinderService;
 	}
 
-	@PostMapping("/pepito")
-	public void authenticate() {
-		System.out.println("Authenticationgggggggg  .................................");
-	}
-
 	@GetMapping("/profiles/{email}")
 	public ProfileDTO getProfile(@PathVariable String email)  {
 		return tinderService.getProfile(email);
@@ -76,8 +71,6 @@ public class ProfileRestController {
 	public List<ProfileDTO> getCandidatesByNickname(Principal principal) {
 		return tinderService.getCandidatesByNickname(principal.getName());
 	}
-
-
 
 
 	public static class LikeFront {
