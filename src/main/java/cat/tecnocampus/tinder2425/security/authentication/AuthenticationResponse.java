@@ -1,4 +1,4 @@
-package cat.tecnocampus.tinder2425.security.auth;
+package cat.tecnocampus.tinder2425.security.authentication;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

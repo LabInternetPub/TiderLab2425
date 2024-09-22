@@ -1,9 +1,9 @@
 ### login maria
-POST http://localhost:8080/authenticate
+POST http://localhost:8080/login
 content-type: application/json
 
 {
-  "username": "admin",
+  "username": "jordi",
   "password": "password123"
 }
 > {%
@@ -74,7 +74,7 @@ Authorization: {{auth_token}}
 ### post like
 POST http://localhost:8080/likes
 content-type: application/json
-
+Authorization: {{auth_token}}
 {
   "origin" : "pepe@tecnocampus.cat",
   "targets": ["maria@tecnocampus.cat", "marta@tecnocampus.cat"]
@@ -83,7 +83,7 @@ content-type: application/json
 ### post like error origin
 POST http://localhost:8080/likes
 content-type: application/json
-
+Authorization: {{auth_token}}
 {
   "origin" : "error@tecnocampus.cat",
   "targets": ["maria@tecnocampus.cat", "marta@tecnocampus.cat"]
@@ -92,7 +92,7 @@ content-type: application/json
 ### post like error target
 POST http://localhost:8080/likes
 content-type: application/json
-
+Authorization: {{auth_token}}
 {
   "origin" : "pepe@tecnocampus.cat",
   "targets": ["maria@tecnocampus.cat", "error@tecnocampus.cat"]
@@ -101,7 +101,7 @@ content-type: application/json
 ### post profile as string
 POST http://localhost:8080/teaching/profilesString
 content-type: application/string
-
+Authorization: {{auth_token}}
 {
   "email": "manuu@tecnocampus.cat",
   "nickname": "Manuell",
@@ -112,10 +112,12 @@ content-type: application/string
 
 ### get josep candidates
 GET http://localhost:8080/profiles/josep@tecnocampus.cat/candidates
-
+Authorization: {{auth_token}}
 
 ### get josep candidates
 GET http://localhost:8080/profiles/error@tecnocampus.cat/candidates
+Authorization: {{auth_token}}
 
 ### get int
 GET http://localhost:8080/teaching/int/43
+Authorization: {{auth_token}}

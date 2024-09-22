@@ -1,11 +1,11 @@
-package cat.tecnocampus.tinder2425.security.configuration;
+package cat.tecnocampus.tinder2425.security.authentication;
 
+import cat.tecnocampus.tinder2425.domain.UserLab;
 import cat.tecnocampus.tinder2425.persistence.UserLabRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import cat.tecnocampus.tinder2425.domain.UserLab;
 
 @Service
 public class UserLabDetailsService implements UserDetailsService {
@@ -20,7 +20,7 @@ public class UserLabDetailsService implements UserDetailsService {
         UserLab user = userLabRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
 
-        return UserLabDetails.build(user);
+        return new UserLabDetails(user);
     }
 
 }

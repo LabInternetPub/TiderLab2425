@@ -12,9 +12,9 @@ INSERT INTO tinder_like(origin_email, target_email, creation_date, matched) VALU
 INSERT INTO tinder_like(origin_email, target_email, creation_date, matched) VALUES('jordi@tecnocampus.cat', 'marta@tecnocampus.cat', current_date(), false);
 INSERT INTO tinder_like(origin_email, target_email, creation_date, matched) VALUES('marta@tecnocampus.cat', 'pepe@tecnocampus.cat', current_date(), false);
 
-INSERT INTO role(name) VALUES ('ROLE_USER');
-INSERT INTO role(name) VALUES ('ROLE_MODERATOR');
-INSERT INTO role(name) VALUES ('ROLE_ADMIN');
+INSERT INTO role(name) VALUES ('USER');
+INSERT INTO role(name) VALUES ('MODERATOR');
+INSERT INTO role(name) VALUES ('ADMIN');
 
 INSERT INTO user_lab (email, username, password) VALUES ('josep@tecnocampus.cat', 'josep', '$2a$10$fVKfcc47q6lrNbeXangjYeY000dmjdjkdBxEOilqhapuTO5ZH0co2');
 INSERT INTO user_lab (email, username, password) VALUES ('jordi@tecnocampus.cat', 'jordi', '$2a$10$fVKfcc47q6lrNbeXangjYeY000dmjdjkdBxEOilqhapuTO5ZH0co2');
